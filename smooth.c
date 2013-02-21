@@ -168,5 +168,34 @@ int main()
     //printf ("Parallel coalesced smoother took %d seconds and %d microseconds\n",s,u );
     time = (float)s + (float)u / 1000000;
     printf ("Parallel coalesced smoother took %2f seconds\n", time);
+
+    //added code for problem 5
+    float * m3in, * m4in;
+    float * m5out, *m6out;
+    m3in = malloc ( sizeof(float)*MAT_SIZE );
+    m4in = malloc ( sizeof(float)*MAT_SIZE );
+    m5out = malloc ( sizeof(float)*MAT_SIZE );
+    m6out = malloc ( sizeof(float)*MAT_SIZE );
+
+    /* get initial time */
+    gettimeofday ( &ta, NULL );
+
+    program1 ( MAT_DIM, KERNEL_HALFWIDTH, m3in, m4in, m5out, m6out );
+
+    /* get initial time */
+    gettimeofday ( &tb, NULL );
+
+    /* Work out the time */
+    s = tb.tv_sec - ta.tv_sec;
+    if ( ta.tv_usec < tb.tv_usec ) {
+      u = tb.tv_usec - ta.tv_usec;
+    } else {
+      u = 1000000 - tb.tv_usec + ta.tv_usec;
+      s = s-1;
+    }
+
+    //printf ("Parallel coalesced smoother took %d seconds and %d microseconds\n",s,u );
+    time = (float)s + (float)u / 1000000;
+    printf ("Program1 smoother took %2f seconds\n", time);
   }
 }
