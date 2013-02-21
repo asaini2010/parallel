@@ -89,7 +89,7 @@ void smoothParallelYXFor ( int dim, int halfwidth, float * m1, float * m2 )
 {
   int x,y;
 
-  #pragma omp parallel for private (y)
+  #pragma omp parallel for private (x)
   for (y=0; y<dim; y++)
   {
     for (x=0; x<dim; x++)
@@ -128,13 +128,8 @@ void smoothParallelCoalescedFor ( int dim, int halfwidth, float * m1, float * m2
 
   //need to calc the 0 case
   m2[0] = evaluate ( dim, halfwidth, 0, 0, m1 );
-<<<<<<< HEAD
 
-  #pragma omp parallel for
-=======
-  
-  #pragma omp parallel for 
->>>>>>> dc12a4f6dae5d844d07a9119c021472c31193704
+  #pragma omp parallel for private (a)
   for (a=1; a<dim*dim; a++)
   {
     //calculate the appropriate x and y values
