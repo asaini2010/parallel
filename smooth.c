@@ -18,7 +18,7 @@
 #define MAT_DIM 6000
 #define MAT_SIZE MAT_DIM*MAT_DIM
 
-#define KERNEL_HALFWIDTH 1
+#define KERNEL_HALFWIDTH 2
 
 
 int main()
@@ -197,5 +197,26 @@ int main()
     //printf ("Parallel coalesced smoother took %d seconds and %d microseconds\n",s,u );
     time = (float)s + (float)u / 1000000;
     printf ("Program1 smoother took %2f seconds\n", time);
+
+    /* get initial time */
+    gettimeofday ( &ta, NULL );
+
+    program2 ( MAT_DIM, KERNEL_HALFWIDTH, m3in, m4in, m5out, m6out );
+
+    /* get initial time */
+    gettimeofday ( &tb, NULL );
+
+    /* Work out the time */
+    s = tb.tv_sec - ta.tv_sec;
+    if ( ta.tv_usec < tb.tv_usec ) {
+      u = tb.tv_usec - ta.tv_usec;
+    } else {
+      u = 1000000 - tb.tv_usec + ta.tv_usec;
+      s = s-1;
+    }
+
+    //printf ("Parallel coalesced smoother took %d seconds and %d microseconds\n",s,u );
+    time = (float)s + (float)u / 1000000;
+    printf ("Program2 smoother took %2f seconds\n", time);
   }
 }
