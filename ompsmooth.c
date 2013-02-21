@@ -128,13 +128,14 @@ void smoothParallelCoalescedFor ( int dim, int halfwidth, float * m1, float * m2
 
   //need to calc the 0 case
   m2[0] = evaluate ( dim, halfwidth, 0, 0, m1 );
-
+  
+  #pragma omp parallel for 
   for (a=1; a<dim*dim; a++)
   {
     //calculate the appropriate x and y values
     x = a / dim;
     y = a - x * dim;
-    m2[y*dim+x] = evaluate ( dim, halfwidth, x, y, m1 );
+    m2[a] = evaluate ( dim, halfwidth, x, y, m1 );
   }
 }
 
