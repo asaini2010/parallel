@@ -74,7 +74,7 @@ int main()
 
   //printf ("Serial YX smoother took %d seconds and %d microseconds\n",s,u );
   float time = (float)s + (float)u / 1000000;
-  printf ("Serial YX smoother took %2f seconds\n", time) );
+  printf ("Serial YX smoother took %2f seconds\n", time);
 
   /* get initial time */
   gettimeofday ( &ta, NULL );
