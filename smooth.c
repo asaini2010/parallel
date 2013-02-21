@@ -18,7 +18,7 @@
 #define MAT_DIM 6000
 #define MAT_SIZE MAT_DIM*MAT_DIM
 
-#define KERNEL_HALFWIDTH 2
+#define KERNEL_HALFWIDTH 1
 
 
 int main()
