@@ -94,7 +94,9 @@ int main()
     s = s-1;
   }
 
-  printf ("Serial XY smoother took %d seconds and %d microseconds\n",s,u );
+  //printf ("Serial XY smoother took %d seconds and %d microseconds\n",s,u );
+  time = (float)s + (float)u / 1000000;
+  printf ("Serial XY smoother took %2f seconds\n", time);
 
   /*********  Parallel Tests **********/
   int threads;
@@ -121,7 +123,9 @@ int main()
       s = s-1;
     }
 
-    printf ("Parallel YX smoother took %d seconds and %d microseconds\n",s,u );
+    //printf ("Parallel YX smoother took %d seconds and %d microseconds\n",s,u );
+    time = (float)s + (float)u / 1000000;
+    printf ("Parallel YX smoother took %2f seconds\n", time);
 
     /* get initial time */
     gettimeofday ( &ta, NULL );
@@ -140,8 +144,9 @@ int main()
       s = s-1;
     }
 
-    printf ("Parallel XY smoother took %d seconds and %d microseconds\n",s,u );
-
+    //printf ("Parallel XY smoother took %d seconds and %d microseconds\n",s,u );
+    time = (float)s + (float)u / 1000000;
+    printf ("Parallel XY smoother took %2f seconds\n", time);
 
     /* get initial time */
     gettimeofday ( &ta, NULL );
@@ -160,6 +165,8 @@ int main()
       s = s-1;
     }
 
-    printf ("Parallel coalesced smoother took %d seconds and %d microseconds\n",s,u );
+    //printf ("Parallel coalesced smoother took %d seconds and %d microseconds\n",s,u );
+    time = (float)s + (float)u / 1000000;
+    printf ("Parallel coalesced smoother took %2f seconds\n", time);
   }
 }
