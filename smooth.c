@@ -73,7 +73,7 @@ int main()
   }
 
   printf ("Serial YX smoother took %d seconds and %d microseconds\n",s,u );
-
+  
   /* get initial time */
   gettimeofday ( &ta, NULL );
 
