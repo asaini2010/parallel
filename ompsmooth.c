@@ -126,7 +126,7 @@ void smoothParallelCoalescedFor ( int dim, int halfwidth, float * m1, float * m2
 {
   int a,x,y;
 
-  #pragma omp parallel for private (a)
+  #pragma omp parallel for private (a,x,y)
   for (a=0; a<dim*dim; a++)
   {
     //calculate the appropriate x and y values
@@ -146,7 +146,7 @@ void program2 ( int dim, int halfwidth, float * m3, float * m4, float * m5, floa
 {
   int a,x,y;
 
-  #pragma omp parallel for private (a)
+  #pragma omp parallel for private (a,x,y)
   for (a=0; a<dim*dim; a++)
   {
     //calculate the appropriate x and y values
